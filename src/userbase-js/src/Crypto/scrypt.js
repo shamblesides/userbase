@@ -1,6 +1,16 @@
-import scryptJs from 'scrypt-js'
+import { scrypt as scryptCallback } from 'crypto'
 import base64 from 'base64-arraybuffer'
 import { stringToArrayBuffer } from './utils'
+
+const scryptAsync = (password, salt, N, r, p, keylen) => new Promise((resolve, reject) => {
+  scryptCallback(password, salt, keylen, { N, r, p }, (err, derivedKey) => {
+    if (err) {
+      reject(err)
+    } else {
+      resolve(derivedKey)
+    }
+  })
+});
 
 /**
  *
@@ -45,9 +55,9 @@ const dkLen = 32
  *
  **/
 const SALT_LENGTH = 16
-const generateSalt = () => window.crypto.getRandomValues(new Uint8Array(SALT_LENGTH))
+const generateSalt = () => globalThis.crypto.getRandomValues(new Uint8Array(SALT_LENGTH))
 
-const hash = async (passwordString, salt, passwordHashAlgo = scryptJs.scrypt) => {
+const hash = async (passwordString, salt, passwordHashAlgo = scryptAsync) => {
   const passwordArrayBuffer = new Uint8Array(stringToArrayBuffer(passwordString))
   const passwordHash = await passwordHashAlgo(passwordArrayBuffer, salt, N, r, p, dkLen)
   return base64.encode(passwordHash)
