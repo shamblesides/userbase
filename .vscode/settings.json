@@ -1,6 +1,4 @@
 {
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
     "editor.minimap.maxColumn": 180,
     "editor.tabSize": 2,
     "editor.smoothScrolling": true,
@@ -8,9 +6,5 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "html.format.wrapLineLength": 0,
-    "eslint.autoFixOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
+    "html.format.wrapLineLength": 0
 }
