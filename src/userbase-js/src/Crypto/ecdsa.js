@@ -36,7 +36,7 @@ const ECDSA_SIGNING_PARAMS = {
 }
 
 const generateKeyPair = async () => {
-  const keyPair = await window.crypto.subtle.generateKey(
+  const keyPair = await globalThis.crypto.subtle.generateKey(
     ECDSA_PARAMS,
     KEY_IS_EXTRACTABLE,
     KEY_PAIR_WILL_BE_USED_TO
@@ -45,14 +45,14 @@ const generateKeyPair = async () => {
 }
 
 const getRawPrivateKeyFromPrivateKey = async (privateKey) => {
-  const jwkPrivateKey = await window.crypto.subtle.exportKey(PRIVATE_KEY_TYPE, privateKey)
+  const jwkPrivateKey = await globalThis.crypto.subtle.exportKey(PRIVATE_KEY_TYPE, privateKey)
   const rawPrivateKey = stringToArrayBuffer(JSON.stringify(jwkPrivateKey))
   return rawPrivateKey
 }
 
 const getPrivateKeyFromRawPrivateKey = async (rawPrivateKey) => {
   const jwkPrivateKey = JSON.parse(arrayBufferToString(rawPrivateKey))
-  const privateKey = await window.crypto.subtle.importKey(
+  const privateKey = await globalThis.crypto.subtle.importKey(
     PRIVATE_KEY_TYPE,
     jwkPrivateKey,
     ECDSA_PARAMS,
@@ -64,7 +64,7 @@ const getPrivateKeyFromRawPrivateKey = async (rawPrivateKey) => {
 }
 
 const getPublicKeyFromRawPublicKey = async (rawPublicKey) => {
-  const publicKey = await window.crypto.subtle.importKey(
+  const publicKey = await globalThis.crypto.subtle.importKey(
     PUBLIC_KEY_TYPE,
     rawPublicKey,
     ECDSA_PARAMS,
@@ -75,7 +75,7 @@ const getPublicKeyFromRawPublicKey = async (rawPublicKey) => {
 }
 
 const getRawPublicKeyFromPublicKey = async (publicKey) => {
-  const rawPublicKey = await window.crypto.subtle.exportKey(PUBLIC_KEY_TYPE, publicKey)
+  const rawPublicKey = await globalThis.crypto.subtle.exportKey(PUBLIC_KEY_TYPE, publicKey)
   return rawPublicKey
 }
 
@@ -86,7 +86,7 @@ const getPublicKeyStringFromPublicKey = async (publicKey) => {
 }
 
 const getPublicKeyFromPrivateKey = async (privateKey) => {
-  const jwkPrivateKey = await window.crypto.subtle.exportKey('jwk', privateKey)
+  const jwkPrivateKey = await globalThis.crypto.subtle.exportKey('jwk', privateKey)
 
   // delete private key data
   delete jwkPrivateKey.d
@@ -94,7 +94,7 @@ const getPublicKeyFromPrivateKey = async (privateKey) => {
   // set public key key_ops to enable import as public key
   jwkPrivateKey.key_ops = PUBLIC_KEY_WILL_BE_USED_TO
 
-  const publicKey = await window.crypto.subtle.importKey(
+  const publicKey = await globalThis.crypto.subtle.importKey(
     'jwk',
     jwkPrivateKey, // technically this now has same values as the public key would
     ECDSA_PARAMS,
@@ -129,7 +129,7 @@ const generateEcdsaKeyData = async (masterKey) => {
 }
 
 const sign = async (privateKey, data) => {
-  const signature = await window.crypto.subtle.sign(
+  const signature = await globalThis.crypto.subtle.sign(
     ECDSA_SIGNING_PARAMS,
     privateKey,
     data
@@ -145,7 +145,7 @@ const signString = async (privateKey, dataString) => {
 }
 
 const verify = async (publicKey, signature, data) => {
-  const isVerified = await window.crypto.subtle.verify(
+  const isVerified = await globalThis.crypto.subtle.verify(
     ECDSA_SIGNING_PARAMS,
     publicKey,
     signature,

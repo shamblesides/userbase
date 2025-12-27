@@ -14,7 +14,7 @@ const importHkdfKeyFromString = async (seedString) => {
 }
 
 const importHkdfKey = async (seed) => {
-  const hkdfKey = await window.crypto.subtle.importKey(
+  const hkdfKey = await globalThis.crypto.subtle.importKey(
     RAW_KEY_TYPE,
     seed,
     {
@@ -37,7 +37,7 @@ const importHkdfKey = async (seed) => {
  *
  **/
 const SALT_BYTE_SIZE = sha256.BYTE_SIZE
-const generateSalt = () => window.crypto.getRandomValues(new Uint8Array(SALT_BYTE_SIZE))
+const generateSalt = () => globalThis.crypto.getRandomValues(new Uint8Array(SALT_BYTE_SIZE))
 
 const getParams = (keyName, salt) => ({
   name: HKDF_ALGORITHM_NAME,
@@ -50,7 +50,7 @@ const PASSWORD_TOKEN_NAME = 'password-token'
 const PASSWORD_TOKEN_NUM_BITS = 256
 
 const getPasswordToken = async (hkdfKey, salt) => {
-  const passwordTokenBits = await window.crypto.subtle.deriveBits(
+  const passwordTokenBits = await globalThis.crypto.subtle.deriveBits(
     getParams(PASSWORD_TOKEN_NAME, salt),
     hkdfKey,
     PASSWORD_TOKEN_NUM_BITS

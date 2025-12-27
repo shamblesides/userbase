@@ -56,7 +56,7 @@ const getSharedKeyWithServer = async (privateKey) => {
 }
 
 const importKeyFromMaster = async (masterKey, salt) => {
-  const privateKey = await window.crypto.subtle.deriveKey(
+  const privateKey = await globalThis.crypto.subtle.deriveKey(
     hkdf.getParams(DIFFIE_HELLMAN_KEY_NAME, salt),
     masterKey,
     aesGcm.getEncryptionKeyParams(), // DH not supported, using raw AES key as secret instead

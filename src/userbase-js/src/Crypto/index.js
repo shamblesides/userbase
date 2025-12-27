@@ -8,7 +8,7 @@ import hkdf from './hkdf'
 import scrypt from './scrypt'
 
 const SEED_BYTE_SIZE = 32 // 256 / 8
-const generateSeed = () => window.crypto.getRandomValues(new Uint8Array(SEED_BYTE_SIZE))
+const generateSeed = () => globalThis.crypto.getRandomValues(new Uint8Array(SEED_BYTE_SIZE))
 
 export default {
   generateSeed,

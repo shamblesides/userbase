@@ -29,7 +29,7 @@ const ECDH_PARAMS = {
 }
 
 const generateKeyPair = async () => {
-  const keyPair = await window.crypto.subtle.generateKey(
+  const keyPair = await globalThis.crypto.subtle.generateKey(
     ECDH_PARAMS,
     KEY_IS_EXTRACTABLE,
     KEY_WILL_BE_USED_TO
@@ -38,14 +38,14 @@ const generateKeyPair = async () => {
 }
 
 const getRawPrivateKeyFromPrivateKey = async (privateKey) => {
-  const jwkPrivateKey = await window.crypto.subtle.exportKey(PRIVATE_KEY_TYPE, privateKey)
+  const jwkPrivateKey = await globalThis.crypto.subtle.exportKey(PRIVATE_KEY_TYPE, privateKey)
   const rawPrivateKey = stringToArrayBuffer(JSON.stringify(jwkPrivateKey))
   return rawPrivateKey
 }
 
 const getPrivateKeyFromRawPrivateKey = async (rawPrivateKey) => {
   const jwkPrivateKey = JSON.parse(arrayBufferToString(rawPrivateKey))
-  const privateKey = await window.crypto.subtle.importKey(
+  const privateKey = await globalThis.crypto.subtle.importKey(
     PRIVATE_KEY_TYPE,
     jwkPrivateKey,
     ECDH_PARAMS,
@@ -57,12 +57,12 @@ const getPrivateKeyFromRawPrivateKey = async (rawPrivateKey) => {
 }
 
 const getRawPublicKeyFromPublicKey = async (publicKey) => {
-  const rawPublicKey = await window.crypto.subtle.exportKey(PUBLIC_KEY_TYPE, publicKey)
+  const rawPublicKey = await globalThis.crypto.subtle.exportKey(PUBLIC_KEY_TYPE, publicKey)
   return rawPublicKey
 }
 
 const getPublicKeyFromRawPublicKey = async (rawPublicKey) => {
-  const publicKey = await window.crypto.subtle.importKey(
+  const publicKey = await globalThis.crypto.subtle.importKey(
     PUBLIC_KEY_TYPE,
     rawPublicKey,
     ECDH_PARAMS,
@@ -101,7 +101,7 @@ const generateEcdhKeyData = async (masterKey, ecdsaPrivateKey) => {
 }
 
 const computeSharedKeyEncryptionKey = async (otherEcdhPublicKey, ecdhPrivateKey) => {
-  const sharedKeyEncryptionKey = await window.crypto.subtle.deriveKey(
+  const sharedKeyEncryptionKey = await globalThis.crypto.subtle.deriveKey(
     {
       name: ECDH_ALGORITHM_NAME,
       namedCurve: NAMED_CURVE,

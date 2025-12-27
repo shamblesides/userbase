@@ -11,7 +11,7 @@ const KEY_WILL_BE_USED_TO_SIGN = ['sign']
 const KEY_WILL_BE_USED_TO_SIGN_AND_VERIFY = ['sign', 'verify']
 
 const importKeyFromMaster = async (masterKey, salt) => {
-  const hmacKey = await window.crypto.subtle.deriveKey(
+  const hmacKey = await globalThis.crypto.subtle.deriveKey(
     hkdf.getParams(HMAC_KEY_NAME, salt),
     masterKey,
     {
@@ -28,7 +28,7 @@ const importKeyFromMaster = async (masterKey, salt) => {
 }
 
 const importKeyFromRawBits = async (rawBits) => {
-  const hmacKey = await window.crypto.subtle.importKey(
+  const hmacKey = await globalThis.crypto.subtle.importKey(
     'raw',
     rawBits,
     {
@@ -50,7 +50,7 @@ const importKeyFromRawBits = async (rawBits) => {
  * @param {String} data
  */
 const sign = async (key, data) => {
-  const result = await window.crypto.subtle.sign(
+  const result = await globalThis.crypto.subtle.sign(
     {
       name: ALGORITHM_NAME,
     },
