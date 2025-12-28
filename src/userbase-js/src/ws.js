@@ -235,7 +235,9 @@ class Connection {
                   const bundle = await this.rebuildBundle(database, message.bundleSeqNo, message.encryptedBundleEncryptionKey)
                   await database.applyBundle(bundle, message.bundleSeqNo)
                 } catch (e) {
-                  window.alert(`Oops! Something went wrong. Please contact the site administrator with this issue (${dbId}).\n\n` + e)
+                  if (globalThis.alert) {
+                    globalThis.alert(`Oops! Something went wrong. Please contact the site administrator with this issue (${dbId}).\n\n` + e)
+                  }
                   throw e
                 }
               }

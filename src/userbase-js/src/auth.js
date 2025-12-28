@@ -29,7 +29,7 @@ const _checkSignedInState = () => {
 const _parseGenericErrors = (e) => {
   if (e.response) {
     if (e.response.data === 'Domain not whitelisted') {
-      throw new errors.DomainNotWhitelisted(window.location.origin)
+      throw new errors.DomainNotWhitelisted(String(globalThis.location?.origin))
     } else if (e.response.data === 'App ID not valid') {
       throw new errors.AppIdNotValid
     } else if (e.response.data === 'UserNotFound') {
@@ -515,7 +515,7 @@ const signIn = async (params) => {
 
 const init = async (params) => {
   try {
-    if (!window.crypto.subtle) throw new errors.WebCryptoUnavailable
+    if (!globalThis.crypto.subtle) throw new errors.WebCryptoUnavailable
 
     if (typeof params !== 'object') throw new errors.ParamsMustBeObject
 

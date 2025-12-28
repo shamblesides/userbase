@@ -29,7 +29,7 @@ const _validatePurchaseOrUpdate = (params) => {
   if (!stripeData.stripeAccountId) throw new errors.StripeAccountNotConnected
   if (stripeData.paymentsMode === 'disabled') throw new errors.PaymentsDisabled
 
-  if (!objectHasOwnProperty(window, 'Stripe')) throw new errors.StripeJsLibraryMissing
+  if (!objectHasOwnProperty(globalThis, 'Stripe')) throw new errors.StripeJsLibraryMissing
 
   if (typeof params !== 'object') throw new errors.ParamsMustBeObject
 
@@ -65,7 +65,7 @@ const purchaseSubscription = async (params) => {
 
       const stripePk = config.getStripePublishableKey(stripeData.paymentsMode === 'prod')
 
-      const result = await window
+      const result = await globalThis
         .Stripe(stripePk, { stripeAccount: stripeData.stripeAccountId })
         .redirectToCheckout({ sessionId: stripeSessionId })
 
@@ -223,7 +223,7 @@ const updatePaymentMethod = async (params) => {
 
       const stripePk = config.getStripePublishableKey(stripeData.paymentsMode === 'prod')
 
-      const result = await window
+      const result = await globalThis
         .Stripe(stripePk, { stripeAccount: stripeData.stripeAccountId })
         .redirectToCheckout({ sessionId: stripeSessionId })
 
