@@ -1,5 +1,5 @@
 import config from '../config'
-import { processXhr } from './utils'
+import { processXhr, XMLHttpRequest } from './utils'
 
 const signUp = (username, passwordToken, ecKeyData, passwordSalts, keySalts, email, profile, passwordBasedBackup, sessionLength) => {
   return new Promise((resolve, reject) => {

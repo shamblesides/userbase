@@ -2,13 +2,16 @@
   "bugs": {
     "url": "https://github.com/smallbets/userbase/issues"
   },
+  "type": "module",
   "dependencies": {
     "@babel/runtime": "^7.9.2",
     "base64-arraybuffer": "^0.2.0",
     "diffie-hellman": "^5.0.3",
+    "lz-string": "^1.4.4",
     "scrypt-js": "^3.0.0",
     "sorted-array": "^2.0.4",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "xhr2": "^0.2.1"
   },
   "deprecated": false,
   "description": "Userbase JS browser SDK",
@@ -23,6 +26,9 @@
     "authentication"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "main": "dist/userbase.cjs.js",
   "module": "lib/index.js",
   "typings": "./types/index.d.ts",

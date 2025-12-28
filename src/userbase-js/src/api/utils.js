@@ -1,5 +1,14 @@
 import errors from '../errors'
 
+let XMLHttpRequestImpl = globalThis.XMLHttpRequest
+
+if (!XMLHttpRequestImpl) {
+  const xhr2 = await import(/* webpackIgnore: true */ 'xhr2')
+  XMLHttpRequestImpl = xhr2.default
+}
+
+export const XMLHttpRequest = XMLHttpRequestImpl
+
 const TEN_SECONDS_MS = 10 * 1000
 
 class RequestError extends Error {

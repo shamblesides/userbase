@@ -1,5 +1,5 @@
 import config from '../config'
-import { processXhr } from './utils'
+import { processXhr, XMLHttpRequest } from './utils'
 
 const TIMEOUT = 30 * 1000
 
