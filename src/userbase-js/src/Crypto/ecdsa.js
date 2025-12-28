@@ -1,8 +1,8 @@
 import base64 from 'base64-arraybuffer'
-import sha256 from './sha-256'
-import hkdf from './hkdf'
-import aesGcm from './aes-gcm'
-import { stringToArrayBuffer, arrayBufferToString } from './utils'
+import sha256 from './sha-256.js'
+import hkdf from './hkdf.js'
+import aesGcm from './aes-gcm.js'
+import { stringToArrayBuffer, arrayBufferToString } from './utils.js'
 
 const ECDSA_ALGORITHM_NAME = 'ECDSA'
 const KEY_IS_EXTRACTABLE = true

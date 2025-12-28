@@ -1,4 +1,4 @@
-import errors from './errors'
+import errors from './errors/index.js'
 
 const USERBASE_JS_VERSION = '2.8.0'
 

@@ -1,12 +1,12 @@
 import base64 from 'base64-arraybuffer'
-import authApi from './api/auth'
-import ws from './ws'
-import crypto from './Crypto'
-import localData from './localData'
-import config from './config'
-import errors from './errors'
-import statusCodes from './statusCodes'
-import { objectHasOwnProperty, getWsUrl } from './utils'
+import authApi from './api/auth.js'
+import ws from './ws.js'
+import crypto from './Crypto/index.js'
+import localData from './localData.js'
+import config from './config.js'
+import errors from './errors/index.js'
+import statusCodes from './statusCodes.js'
+import { objectHasOwnProperty, getWsUrl } from './utils.js'
 
 const MAX_PASSWORD_CHAR_LENGTH = 1000
 const MIN_PASSWORD_CHAR_LENGTH = 6

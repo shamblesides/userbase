@@ -1,6 +1,6 @@
 import base64 from 'base64-arraybuffer'
-import sha256 from './sha-256'
-import { stringToArrayBuffer } from './utils'
+import sha256 from './sha-256.js'
+import { stringToArrayBuffer } from './utils.js'
 
 const HKDF_ALGORITHM_NAME = 'HKDF'
 const RAW_KEY_TYPE = 'raw'

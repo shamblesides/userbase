@@ -1,6 +1,6 @@
 import base64 from 'base64-arraybuffer'
-import hkdf from './hkdf'
-import { arrayBufferToString, stringToArrayBuffer, appendBuffer } from './utils'
+import hkdf from './hkdf.js'
+import { arrayBufferToString, stringToArrayBuffer, appendBuffer } from './utils.js'
 
 const ENCRYPTION_ALGORITHM_NAME = 'AES-GCM'
 const BIT_SIZE = 256

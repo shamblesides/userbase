@@ -1,9 +1,9 @@
 import DH from 'diffie-hellman'
-import aesGcm from './aes-gcm'
-import hkdf from './hkdf'
-import sha256 from './sha-256'
-import { hexStringToArrayBuffer } from './utils'
-import authApi from '../api/auth'
+import aesGcm from './aes-gcm.js'
+import hkdf from './hkdf.js'
+import sha256 from './sha-256.js'
+import { hexStringToArrayBuffer } from './utils.js'
+import authApi from '../api/auth.js'
 
 const KEY_IS_EXTRACTABLE = true
 const KEY_WILL_BE_USED_TO = ['encrypt'] // unused

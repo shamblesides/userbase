@@ -1,7 +1,7 @@
 import base64 from 'base64-arraybuffer'
-import hkdf from './hkdf'
-import sha256 from './sha-256'
-import { stringToArrayBuffer } from './utils'
+import hkdf from './hkdf.js'
+import sha256 from './sha-256.js'
+import { stringToArrayBuffer } from './utils.js'
 
 const HMAC_KEY_NAME = 'authentication'
 

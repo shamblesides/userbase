@@ -1,4 +1,4 @@
-import statusCodes from '../statusCodes'
+import statusCodes from '../statusCodes.js'
 
 class UsernameAlreadyExists extends Error {
   constructor(...params) {

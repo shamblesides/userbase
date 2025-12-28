@@ -1,4 +1,4 @@
-import statusCodes from '../statusCodes'
+import statusCodes from '../statusCodes.js'
 
 class DatabaseNameMissing extends Error {
   constructor(...params) {

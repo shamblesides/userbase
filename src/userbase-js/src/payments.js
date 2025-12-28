@@ -1,8 +1,8 @@
-import ws from './ws'
-import errors from './errors'
-import statusCodes from './statusCodes'
-import { objectHasOwnProperty, getProtocolFromEndpoint } from './utils'
-import config from './config'
+import ws from './ws.js'
+import errors from './errors/index.js'
+import statusCodes from './statusCodes.js'
+import { objectHasOwnProperty, getProtocolFromEndpoint } from './utils.js'
+import config from './config.js'
 
 const _checkSignedInState = () => {
   if (ws.reconnecting) throw new errors.Reconnecting

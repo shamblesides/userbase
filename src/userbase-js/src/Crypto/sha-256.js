@@ -1,5 +1,5 @@
 import base64 from 'base64-arraybuffer'
-import { stringToArrayBuffer } from './utils'
+import { stringToArrayBuffer } from './utils.js'
 
 const BYTE_SIZE = 32 // 256 / 8
 const HASH_ALGORITHM_NAME = 'SHA-256'

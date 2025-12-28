@@ -1,6 +1,6 @@
 import scryptJs from 'scrypt-js'
 import base64 from 'base64-arraybuffer'
-import { stringToArrayBuffer } from './utils'
+import { stringToArrayBuffer } from './utils.js'
 
 /**
  *

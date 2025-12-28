@@ -1,6 +1,6 @@
-import auth from './auth'
-import db from './db'
-import payments from './payments'
+import auth from './auth.js'
+import db from './db.js'
+import payments from './payments.js'
 
 export default {
   init: auth.init,

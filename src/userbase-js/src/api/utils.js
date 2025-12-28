@@ -1,4 +1,4 @@
-import errors from '../errors'
+import errors from '../errors/index.js'
 
 let XMLHttpRequestImpl = globalThis.XMLHttpRequest
 

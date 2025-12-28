@@ -1,8 +1,8 @@
-import auth from './auth'
-import db from './db'
-import config from './config'
-import payments from './payments'
-import statusCodes from '../statusCodes'
+import auth from './auth.js'
+import db from './db.js'
+import config from './config.js'
+import payments from './payments.js'
+import statusCodes from '../statusCodes.js'
 
 class AppIdNotSet extends Error {
   constructor(...params) {
