@@ -1,3 +1,10 @@
+const hasWorker = 'Worker' in globalThis;
+
+let LZString
+if (!hasWorker) {
+  LZString = await import(/* webpackIgnore: true */ 'lz-string')
+}
+
 // load the worker using inline JS so clients can avoid needing to load worker from a separate file
 // https://stackoverflow.com/a/19201292
 const newWorker = () => {
@@ -31,6 +38,10 @@ const newWorker = () => {
 
 // compress and decompress inside a worker because large amounts of data freeze the DOM
 export const compress = async (data) => {
+  if (!hasWorker) {
+    return LZString.compress(data)
+  }
+
   const worker = newWorker()
   return new Promise((resolve) => {
     worker.onmessage = (e) => {
@@ -42,6 +53,10 @@ export const compress = async (data) => {
 }
 
 export const decompress = async (data) => {
+  if (!hasWorker) {
+    return LZString.decompress(data)
+  }
+
   const worker = newWorker()
   return new Promise((resolve) => {
     worker.onmessage = (e) => {
