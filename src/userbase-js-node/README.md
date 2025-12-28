@@ -1,3 +1,27 @@
+# DEPRECATED: userbase-js-node
+
+**This package is deprecated.** The main `userbase-js` package now has native Node.js support (requires Node.js 20+).
+
+## Migration
+
+Simply replace `userbase-js-node` with `userbase-js`:
+
+**Old:**
+```javascript
+const userbase = require('userbase-js-node')
+```
+
+**New:**
+```javascript
+import userbase from 'userbase-js'
+// or
+const userbase = await import('userbase-js')
+```
+
+No other changes required. All polyfills have been removed - `userbase-js` now uses native Node.js APIs.
+
+---
+
 ## What is Userbase?
 
 Userbase is the easiest way to add user accounts and user data persistence to your static site. All Userbase features are accessible through a very simple [JavaScript SDK](https://userbase.com/docs/sdk/), directly from the browser.

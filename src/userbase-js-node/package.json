@@ -2,6 +2,7 @@
   "name": "userbase-js-node",
   "version": "0.0.0",
   "description": "Userbase JS SDK for node",
+  "deprecated": "Use userbase-js directly - it now has native Node.js support (requires Node.js 20+)",
   "homepage": "https://github.com/smallbets/userbase/tree/master/src/userbase-js-node",
   "repository": {
     "type": "git",
