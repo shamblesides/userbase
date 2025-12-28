@@ -42,6 +42,43 @@ We have tested support for the following browsers:
 
 To support Internet Explorer, you will need to use a Promise polyfill such as [this one](https://github.com/taylorhakes/promise-polyfill).
 
+## Node.js Support
+
+Userbase can be used in Node.js 20+ environments. The SDK will automatically use Node.js native APIs where available.
+
+### Performance Optimization for Node.js
+
+For better performance in Node.js, you can use the native `crypto.scrypt` implementation instead of the JavaScript fallback:
+
+```javascript
+import userbase from 'userbase-js'
+import { scrypt } from 'crypto'
+
+// Create a wrapper function for Node.js native scrypt
+const nativeScrypt = (password, salt, N, r, p, keylen) =>
+  new Promise((resolve, reject) => {
+    scrypt(password, salt, keylen, { N, r, p }, (err, derivedKey) => {
+      if (err) reject(err)
+      else resolve(derivedKey)
+    })
+  })
+
+// Pass it to signUp, signIn, or updatePassword
+await userbase.signUp({
+  username: 'example',
+  password: 'password123',
+  passwordHashAlgo: nativeScrypt
+})
+
+await userbase.signIn({
+  username: 'example',
+  password: 'password123',
+  passwordHashAlgo: nativeScrypt
+})
+```
+
+The native scrypt implementation is significantly faster than the JavaScript fallback, especially for interactive logins.
+
 ## Credits
 The people who made this project a reality:
 - [Daniel Vassallo](https://twitter.com/dvassallo)
