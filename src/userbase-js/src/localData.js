@@ -8,7 +8,11 @@ const tryCatchWrapper = (func) => (...args) => {
     // they're helpful, but if not, the SDK functions totally fine.
     //
     // If a function fails, behavior is functionally the same as if rememberMe is 'none'.
-    console.warn('Error accessing browser storage. Defaulting to memory.\n\n', e)
+
+    // Log errors for browser-like environments only
+    if (typeof window !== 'undefined') {
+      console.warn('Error accessing browser storage. Defaulting to memory.\n\n', e)
+    }
   }
 }
 
