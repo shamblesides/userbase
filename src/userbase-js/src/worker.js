@@ -1,8 +1,9 @@
 const hasWorker = 'Worker' in globalThis;
 
+/** @type {import('lz-string')} */
 let LZString
 if (!hasWorker) {
-  LZString = await import(/* webpackIgnore: true */ 'lz-string')
+  LZString = (await import(/* webpackIgnore: true */ 'lz-string')).default;
 }
 
 // load the worker using inline JS so clients can avoid needing to load worker from a separate file
